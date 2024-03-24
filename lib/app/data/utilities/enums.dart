@@ -1,0 +1,3 @@
+enum CustomerType{
+  customer, shop
+}
