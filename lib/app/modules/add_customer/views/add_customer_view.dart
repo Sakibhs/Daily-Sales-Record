@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:daily_sales_record/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +18,7 @@ class AddCustomerView extends GetView<AddCustomerController> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Product'),
+        title: const Text('Add Customer'),
       ),
       body: Container(
         margin: const EdgeInsets.all(10.0),
@@ -58,7 +60,7 @@ class AddCustomerView extends GetView<AddCustomerController> {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.2,
-                      margin: const EdgeInsets.only(top: 8.0),
+                      height: 50,
                       child: TextField(
                         onTap: () => controller.nameController.selection =
                             TextSelection(
@@ -68,9 +70,10 @@ class AddCustomerView extends GetView<AddCustomerController> {
                         controller: controller.nameController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 12, right: 12),
                           labelText: "Name",
                           labelStyle: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.teal),
                           enabledBorder: const OutlineInputBorder(
@@ -86,99 +89,83 @@ class AddCustomerView extends GetView<AddCustomerController> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    SizedBox(height: 12,),
+                    Container(
+                      height: 50,
                       width: MediaQuery.of(context).size.width / 1.2,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width /
-                                (20.0 / 9.0),
-                            // width: 200,
-                            margin: const EdgeInsets.only(top: 8),
-                            child: TextField(
-                              onTap: () =>
-                              controller.emailController.selection =
-                                  TextSelection(
-                                      baseOffset: 0,
-                                      extentOffset: controller
-                                          .emailController
-                                          .value
-                                          .text
-                                          .length),
-                              controller: controller.emailController,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              // controller: controller.enterPinController,
-                              decoration: InputDecoration(
-                                labelText: "Email",
-                                labelStyle: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.teal),
-                                enabledBorder: const OutlineInputBorder(
-                                  //  borderSide: BorderSide(color: Colors.teal),
-                                  // borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  // borderSide: BorderSide(color: Colors.blue),
-                                  //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                              ),
-                            ),
+                      child: TextField(
+                        onTap: () =>
+                        controller.emailController.selection =
+                            TextSelection(
+                                baseOffset: 0,
+                                extentOffset: controller
+                                    .emailController
+                                    .value
+                                    .text
+                                    .length),
+                        controller: controller.emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        // controller: controller.enterPinController,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 12, right: 12),
+                          labelText: "Email",
+                          labelStyle: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.teal),
+                          enabledBorder: const OutlineInputBorder(
+                            //  borderSide: BorderSide(color: Colors.teal),
+                            // borderRadius: BorderRadius.all(Radius.circular(30.0))
                           ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width / 20),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 3,
-                            // width: 200,
-                            margin: const EdgeInsets.only(top: 8),
-                            child: TextField(
-                              onTap: () =>
-                              controller.phoneNumberController.selection =
-                                  TextSelection(
-                                      baseOffset: 0,
-                                      extentOffset: controller
-                                          .phoneNumberController
-                                          .value
-                                          .text
-                                          .length),
-                              controller: controller.phoneNumberController,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                labelText: "Phone Number",
-                                labelStyle: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.teal),
-                                enabledBorder: const OutlineInputBorder(
-                                  //  borderSide: BorderSide(color: Colors.teal),
-                                  // borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  // borderSide: BorderSide(color: Colors.blue),
-                                  //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                              ),
-                            ),
+                          focusedBorder: const OutlineInputBorder(
+                            // borderSide: BorderSide(color: Colors.blue),
+                            //borderRadius: BorderRadius.all(Radius.circular(30.0))
                           ),
-                        ],
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
                       ),
                     ),
+                    SizedBox(height: 12,),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.2,
-                      // width: 200,
-                      margin: const EdgeInsets.only(top: 8),
+                      height: 50,
+                      child: TextField(
+                        onTap: () =>
+                        controller.phoneNumberController.selection =
+                            TextSelection(
+                                baseOffset: 0,
+                                extentOffset: controller
+                                    .phoneNumberController
+                                    .value
+                                    .text
+                                    .length),
+                        controller: controller.phoneNumberController,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 12, right: 12),
+                          labelText: "Phone Number",
+                          labelStyle: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.teal),
+                          enabledBorder: const OutlineInputBorder(
+                            //  borderSide: BorderSide(color: Colors.teal),
+                            // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            // borderSide: BorderSide(color: Colors.blue),
+                            //borderRadius: BorderRadius.all(Radius.circular(30.0))
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12,),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: 50,
                       child: TextField(
                         onTap: () =>
                         controller.balanceController.selection =
@@ -191,13 +178,11 @@ class AddCustomerView extends GetView<AddCustomerController> {
                                     .length),
                         controller: controller.balanceController,
                         keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 12, right: 12),
                           labelText: "Initial Balance",
                           labelStyle: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.teal),
                           enabledBorder: const OutlineInputBorder(
@@ -213,10 +198,10 @@ class AddCustomerView extends GetView<AddCustomerController> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 12,),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.2,
-                      // width: 200,
-                      margin: const EdgeInsets.only(top: 8),
+                      height: 50,
                       child: TextField(
                         onTap: () =>
                         controller.addressController.selection =
@@ -228,14 +213,12 @@ class AddCustomerView extends GetView<AddCustomerController> {
                                     .text
                                     .length),
                         controller: controller.addressController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 12, right: 12),
                           labelText: "Address",
                           labelStyle: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.teal),
                           enabledBorder: const OutlineInputBorder(
@@ -251,31 +234,44 @@ class AddCustomerView extends GetView<AddCustomerController> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 12,),
                     Container(
                         width: MediaQuery.of(context).size.width / 1.2,
-                        margin: const EdgeInsets.only(top: 8),
-                        child: TextField(
-                          controller: controller.categoryController.value,
-                          onTap: (){
-                            FocusScope.of(context).requestFocus(FocusNode());
-                            Get.toNamed(Routes.CATEGORY);
-                          },
-                          decoration: InputDecoration(
-                            floatingLabelBehavior:FloatingLabelBehavior.always,
-                            labelText: "Category",
-                            labelStyle: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal),
-                            enabledBorder: const OutlineInputBorder(),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            focusedBorder: const OutlineInputBorder(),
+                        height: 50,
+                        child: Obx(
+                          () => TextField(
+                              onTap: (){
+                                FocusScope.of(context).requestFocus(FocusNode());
+                                Get.toNamed(Routes.CATEGORY);
+                              },
+                            controller: controller.categoryTitleController..text = controller.selectedCategory.value.title?? "None",
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 12, right: 12),
+                                labelText: "Category",
+                                labelStyle: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.teal),
+                                enabledBorder: const OutlineInputBorder(
+                                  //  borderSide: BorderSide(color: Colors.teal),
+                                  // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  // borderSide: BorderSide(color: Colors.blue),
+                                  //borderRadius: BorderRadius.all(Radius.circular(30.0))
+                                ),
+                                filled: true,
+                                fillColor: Colors.grey[200],
+                              )
                           ),
                         )),
                     ElevatedButton(
-                        onPressed: () {
-                          print("SM $selectedCategory");
+                        onPressed: () async {
+                          final receivePort = ReceivePort();
+                          await Isolate.spawn(iso, receivePort.sendPort);
+                          receivePort.listen((message) {
+                            debugPrint('Sakib $message');
+                          });
                           controller.add();
                         },
                         child: const Text('Add'))
@@ -319,4 +315,16 @@ class AddCustomerView extends GetView<AddCustomerController> {
       },
     );
   }
+  }
+
+    iso(SendPort sendPort) async {
+     int value = 0;
+      for(int i = 0; i < 100000000; i++){
+    value++;
+       if(value % 1000000 == 0) {
+      print(i);
+    }
+  }
+  //print('finished');
+      sendPort.send(value);
 }

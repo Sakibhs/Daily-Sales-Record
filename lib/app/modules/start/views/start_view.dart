@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,33 +54,50 @@ class StartView extends GetView<StartController> {
           //  color: Colors.blue,
           height: 220,
           width: 300,
-          decoration: const BoxDecoration(color: Color(0xFF05F8E4)),
+          decoration: const BoxDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 200,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  controller: controller.enterPinController,
-                  decoration: InputDecoration(
-                    labelText: "Enter PIN",
-                    labelStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.teal),
-                      // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                height: 50,
+                child: Obx(
+                  () => TextField(
+                    keyboardType: TextInputType.number,
+                    obscureText: !controller.isEnterPINVisible.value,
+                    controller: controller.enterPinController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 12, right: 12),
+                      labelText: "Enter PIN",
+                      labelStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.teal),
+                        // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.greenAccent),
+                        //borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isEnterPINVisible.value = !controller.isEnterPINVisible.value;
+                        },
+                        child: Obx(
+                              () => Icon(
+                            controller.isEnterPINVisible.value ? Icons.visibility_off :
+                            Icons.visibility,
+                                color: Color(0xff333333),
+                          ),
+                        ),
+                      ),
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.greenAccent),
-                      //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
                   ),
                 ),
               ),
@@ -87,26 +106,43 @@ class StartView extends GetView<StartController> {
               ),
               SizedBox(
                 width: 200,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  controller: controller.confirmPinController,
-                  decoration: InputDecoration(
-                    labelText: "Confirm PIN",
-                    labelStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.teal),
-                      // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                height: 50,
+                child: Obx(
+                  ()=> TextField(
+                    keyboardType: TextInputType.number,
+                    obscureText: !controller.isConfirmPINVisible.value,
+                    controller: controller.confirmPinController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 12, right: 12),
+                      labelText: "Confirm PIN",
+                      labelStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.teal),
+                        // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.greenAccent),
+                        //borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isConfirmPINVisible.value = !controller.isConfirmPINVisible.value;
+                        },
+                        child: Obx(
+                              () => Icon(
+                            controller.isConfirmPINVisible.value ? Icons.visibility_off :
+                            Icons.visibility,
+                                color: Color(0xff333333),
+                          ),
+                        ),
+                      ),
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.greenAccent),
-                      //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
                   ),
                 ),
               ),
@@ -117,7 +153,9 @@ class StartView extends GetView<StartController> {
                   onPressed: () => {controller.confirmAndGoToHomePIN()},
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal),
-                  child: const Text("Confirm"))
+                  child: const Text("Confirm", style: TextStyle(
+                    color: Colors.white
+                  ),))
             ],
           ),
         ),
@@ -129,33 +167,52 @@ class StartView extends GetView<StartController> {
           //  color: Colors.blue,
           height: 200,
           width: 300,
-          decoration: const BoxDecoration(color: Color(0x4705F8E4)),
+          decoration: const BoxDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 200,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  controller: controller.enterPinController,
-                  decoration: InputDecoration(
-                    labelText: "Your PIN",
-                    labelStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
-                    enabledBorder: const OutlineInputBorder(
-                      //  borderSide: BorderSide(color: Colors.teal),
-                      // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                height: 50,
+                child: Obx(
+                  () => TextField(
+                    keyboardType: TextInputType.number,
+                    obscureText: !controller.isYourPINVisible.value,
+                    controller: controller.enterPinController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 12, right: 12),
+                      labelText: "Your PIN",
+                      labelStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal),
+                      enabledBorder: const OutlineInputBorder(
+                        //  borderSide: BorderSide(color: Colors.teal),
+                        // borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderSide: BorderSide(color: Colors.blue),
+                        //borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+
+
+                      suffixIcon: InkWell(
+                        onTap: (){
+                          controller.isYourPINVisible.value = !controller.isYourPINVisible.value;
+                        },
+                        child: Obx(
+                              () => Icon(
+                            controller.isYourPINVisible.value ? Icons.visibility_off :
+                            Icons.visibility,
+                            color: Color(0xff333333),
+                          ),
+                        ),
+                      ),
+
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      // borderSide: BorderSide(color: Colors.blue),
-                      //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
                   ),
                 ),
               ),
@@ -173,7 +230,10 @@ class StartView extends GetView<StartController> {
                       backgroundColor: Colors.teal),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text("Done", style: TextStyle(fontSize: 16.0),),
+                    child: Text("Done", style: TextStyle(
+                        color: Colors.white,
+                      fontSize: 16.0
+                    ),),
                   ))
             ],
           ),

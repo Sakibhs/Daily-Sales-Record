@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1072708774595",
+    "firebase_url": "https://helptube-b5aca.firebaseio.com",
+    "project_id": "helptube-b5aca",
+    "storage_bucket": "helptube-b5aca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072708774595:android:af3c5c7abd1985ff595076",
+        "android_client_info": {
+          "package_name": "net.appcolors.daily_sales_record"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072708774595-0trj6jk60n8ksh95vai1r6n13e1dq2s4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.appcolors.daily_sales_record",
+            "certificate_hash": "83b9330ad9f293d1bf6277d71aa2e264f1b6d449"
+          }
+        },
+        {
+          "client_id": "1072708774595-os61q78pkpnilb91toc31tuu81kpdv0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlIFzjHhi2d0WKByFnD_PG4Mgk8MCL_kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072708774595-os61q78pkpnilb91toc31tuu81kpdv0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

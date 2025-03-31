@@ -1,24 +1,25 @@
 import 'dart:collection';
 import 'dart:io';
-
-import 'package:daily_sales_record/app/data/models/customer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../data/models/category.dart';
+import '../../../../data/models/category.dart';
+import '../../../../data/models/customer.dart';
 import '../../customer/controllers/customer_controller.dart';
 
 class AddCustomerController extends GetxController {
   final userData = GetStorage();
   String? filePath;
-  TextEditingController nameController = TextEditingController(text: ""),
-      emailController = TextEditingController(text: ""),
-      phoneNumberController = TextEditingController(text: "0.0"),
-      balanceController = TextEditingController(text: "0.0"),
-      addressController = TextEditingController(text: "0.0");
-  var categoryController = TextEditingController(text : "None").obs;
+  TextEditingController nameController = TextEditingController(text: "SAkib"),
+      emailController = TextEditingController(text: "mds@gmail.com"),
+      phoneNumberController = TextEditingController(text: "1123"),
+      balanceController = TextEditingController(text: "2000"),
+      addressController = TextEditingController(text: "sdf"),
+     categoryTitleController = TextEditingController(text: "None");
+
+  var selectedCategory = Rx<Category>(Category(title: "demo"));
   CustomerController customerController = Get.put(CustomerController());
   var balance = 0.0.obs;
   var isDebit = false.obs;
@@ -36,27 +37,22 @@ class AddCustomerController extends GetxController {
     filePath = imagePicking.path;
   }
 
-  void add(){
+  void add() async {
     filePath ??= "";
+    print("After ISO");
     Map<dynamic, dynamic> json = HashMap();
-    json['id'] = -1;
-    json['name'] = nameController.text;
-    json['category'] = categoryController.value.text;
-    json['email'] = emailController.text;
-    json['phoneNumber'] = double.parse(phoneNumberController.text);
+    json['customerName'] = nameController.text;
+    json['customerEmail'] = emailController.text;
+    json['phoneNumber'] = phoneNumberController.text;
     json['balance'] = balance.value;
     json['address'] = addressController.text;
-    json['isDebit'] = isDebit.value;
+  //  json['isDebit'] = isDebit.value;
 
-    Category? category;
-    if(categoryController.value.text == "None") {
-      category = Category(id: -1,
-          title: "None",
-          description: "",
-          photoUrl: "");
-    }
-    customerController.addCustomer(Customer.fromMap(json), category!);
+    customerController.addCustomer(Customer.fromMap(json), selectedCategory.value);
     customerController.getAllCustomers();
     Get.back();
   }
 }
+
+
+

@@ -1,3 +1,4 @@
+import 'package:daily_sales_record/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -107,9 +108,6 @@ class AddProductView extends GetView<AddProductController> {
                                           .length),
                               controller: controller.quantityController,
                               keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
                               // controller: controller.enterPinController,
                               decoration: InputDecoration(
                                 labelText: "Quantity",
@@ -132,42 +130,15 @@ class AddProductView extends GetView<AddProductController> {
                           ),
                           SizedBox(
                               width: MediaQuery.of(context).size.width / 20),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 3,
-                            // width: 200,
-                            margin: const EdgeInsets.only(top: 8),
-                            child: TextField(
-                              onTap: () =>
-                              controller.quantityUnitController.selection =
-                                  TextSelection(
-                                      baseOffset: 0,
-                                      extentOffset: controller
-                                          .quantityUnitController
-                                          .value
-                                          .text
-                                          .length),
-                              controller: controller.quantityUnitController,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                labelText: "Unit",
-                                labelStyle: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.teal),
-                                enabledBorder: const OutlineInputBorder(
-                                  //  borderSide: BorderSide(color: Colors.teal),
-                                  // borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  // borderSide: BorderSide(color: Colors.blue),
-                                  //borderRadius: BorderRadius.all(Radius.circular(30.0))
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                              ),
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(Routes.ADD_UNIT);
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 3,
+                              // width: 200,
+                              margin: const EdgeInsets.only(top: 8),
+                              child: Text('Select'),
                             ),
                           ),
                         ],

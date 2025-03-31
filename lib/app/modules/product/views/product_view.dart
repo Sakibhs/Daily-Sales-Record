@@ -36,14 +36,14 @@ class ProductView extends GetView<ProductController> {
                               shape: BoxShape.circle,
                               color: Colors.black12),
                           width: 80,
-                          child: controller.allProducts[index].photoUrl == ""
+                          child: controller.allProducts[index].photo == ""
                               ? const Icon(Icons.photo, size: 60, color: Colors.white,)
                               : ClipOval(
                             child: SizedBox.fromSize(
                               size: const Size.fromRadius(48),
                               child: Image.file(
                                 File(
-                                    controller.allProducts[index].photoUrl!),
+                                    controller.allProducts[index].photo!),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -111,7 +111,7 @@ class ProductView extends GetView<ProductController> {
                                         color: Colors.white
                                     )),
                                 Spacer(),
-                                Text(controller.allProducts[index].category!,
+                                Text('${controller.allProducts[index].categoryId!}',
                                     style: TextStyle(
                                         color: Colors.white
                                     )),

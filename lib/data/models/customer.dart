@@ -1,30 +1,29 @@
-import 'dart:convert';
 
 class Customer {
-  late int id;
+  int? id;
   late String name;
-  late String category;
+  int? categoryId;
   late String email;
   late String phoneNumber, address;
   late double balance;
-  late bool isDebit;
+ // late bool isDebit;
 
   Customer(CustomerBuilder builder) {
     id = builder._id;
     name = builder._name;
-    category = builder._category;
+    categoryId = builder._category;
     email = builder._email;
     phoneNumber = builder._phoneNumber;
     address = builder._address;
     balance = builder._balance;
-    isDebit = builder._isDebit;
+   // isDebit = builder._isDebit;
   }
 
   Customer.of(
-      {required this.id,
-      required this.category,
+      {
+      required this.categoryId,
       required this.name,
-      required this.isDebit,
+    //  required this.isDebit,
       required this.balance,
       required this.address,
       required this.email,
@@ -32,26 +31,25 @@ class Customer {
 
   factory Customer.fromMap(Map<dynamic, dynamic> json) {
     return Customer.of(
-        id: json['id'],
-        name: json['name'],
-        category: json['category'],
-        isDebit: json['isDebit'],
+        name: json['customerName'],
+        categoryId: json['categoryId'],
+        //isDebit: json['isDebit'],
         balance: json['balance'],
         address: json['address'],
-        email: json['email'],
+        email: json['customerEmail'],
         phoneNumber: json['phoneNumber']
     );
   }
 
   Map<String, dynamic> toMap(){
     return {
-      'id': id,
-      'name': name,
-      'category': category,
-      'isDebit': isDebit,
+      'customerId': id,
+      'customerName': name,
+      'categoryId': categoryId,
+     // 'isDebit': isDebit,
       'balance': balance,
       'address': address,
-      'email': email,
+      'customerEmail': email,
       'phoneNumber': phoneNumber
     };
   }
@@ -59,9 +57,9 @@ class Customer {
 }
 
 class CustomerBuilder {
-  late int _id;
+  int? _id;
   late String _name;
-  late String _category;
+  int? _category;
   late String _email;
   late String _phoneNumber, _address;
   late double _balance;
@@ -74,7 +72,7 @@ class CustomerBuilder {
     _isDebit = isDebit;
   }
 
-  CustomerBuilder setCategory(String category) {
+  CustomerBuilder setCategory(int category) {
     _category = category;
     return this;
   }

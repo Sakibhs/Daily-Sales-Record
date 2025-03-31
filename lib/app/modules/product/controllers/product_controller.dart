@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../../../data/models/category.dart';
-import '../../../data/models/product.dart';
-import '../../../data/repository/product_repo.dart';
+import '../../../../data/models/category.dart';
+import '../../../../data/models/product.dart';
+import '../../../../data/repository/product_repo.dart';
 
 class ProductController extends GetxController {
   var allProducts = <Product>[].obs;

@@ -13,14 +13,29 @@ dependencies:
   sqflite:
   image_picker:
   permission_handler:
+  google_fonts: ^5.1.0
+  firebase_auth: ^4.16.0
+  google_sign_in: ^6.2.1
+  firebase_core: ^2.27.0
+  firebase_analytics: ^10.8.9
+  firebase_crashlytics: ^3.5.5
+  shared_preferences: ^2.2.3
+
   flutter: 
     sdk: flutter
 
 dev_dependencies: 
   flutter_lints: ^3.0.0
+  flutter_app_name: ^0.1.1
   flutter_test: 
     sdk: flutter
 
+flutter_app_name:
+  name: "Daily Sales Record"
+
 flutter: 
   uses-material-design: true
+
+  assets:
+    - assets/images/
 

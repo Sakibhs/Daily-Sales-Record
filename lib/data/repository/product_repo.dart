@@ -2,19 +2,21 @@
 import '../database/sqlite/db_helper.dart';
 import '../models/category.dart';
 import '../models/product.dart';
-import '../utilities/constants.dart';
+import '../../common/constants.dart';
 
 class ProductRepository{
   DBHelper dbHelper = DBHelper();
 
   Future<void> add(Product product, Category category) async {
     var dbClient = await dbHelper.database;
-  //  await dbClient.insert(TableProduct.tableName, product.toMap());
+
+    //  await dbClient.insert(TableProduct.tableName, product.toMap());
 
     await dbClient.transaction((txn) async {
       int table1Id = await txn.insert(TableCategory.tableName, category.toMap());
-     //await txn.insert('table2', {'data': 'Data 1', 'table1_id': table1Id});
-       await txn.insert(TableProduct.tableName, product.toMap());
+      product.categoryId = table1Id;
+      //await txn.insert('table2', {'data': 'Data 1', 'table1_id': table1Id});
+      await txn.insert(TableProduct.tableName, product.toMap());
     });
 
   }
@@ -42,8 +44,8 @@ class ProductRepository{
   Future<List<Product>> getAllProduct() async {
     var dbClient = await dbHelper.database;
     List<Map> maps = await dbClient.query(TableProduct.tableName, columns: [(TableProduct.id),TableProduct.title,
-    TableProduct.category, TableProduct.description, TableProduct.wholeSalePrice, TableProduct.retailPrice, TableProduct.discount,
-    TableProduct.tax, TableProduct.quantity, TableProduct.quantityUnit, TableProduct.photoUrl]);
+    TableProduct.categoryId, TableProduct.description, TableProduct.wholeSalePrice, TableProduct.retailPrice, TableProduct.discount,
+    TableProduct.tax, TableProduct.quantity, TableProduct.quantityUnit, TableProduct.photo]);
     List<Product> productList = [];
     for(int i = 0; i<maps.length; i++){
       productList.add(Product.fromMap(maps[i]));

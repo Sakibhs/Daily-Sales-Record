@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../database/sqlite/db_helper.dart';
 import '../models/category.dart';
-import '../utilities/constants.dart';
+import '../../common/constants.dart';
 
 class CategoryRepo{
   DBHelper dbHelper = DBHelper();
@@ -27,10 +27,10 @@ return await dbClient.insert(TableCategory.tableName, category.toMap());
 
   Future<List<Category>> getAllCategory() async {
     var dbClient = await dbHelper.database;
-    List<Map> maps = await dbClient.query(TableCategory.tableName, columns: [(TableCategory.id),TableCategory.title, TableCategory.description, TableCategory.photoUrl]);
+    List<Map> maps = await dbClient.query(TableCategory.tableName, columns: [(TableCategory.id),TableCategory.title, TableCategory.description, TableCategory.photo]);
     List<Category> categoryList = [];
     for(int i = 0; i<maps.length; i++){
-      print("SakibMou: ${Category.fromMap(maps[i]).photoUrl}");
+      print("SakibMou: ${Category.fromMap(maps[i]).photo}");
       print("SakibMou: ${Category.fromMap(maps[i]).title}");
       print("SakibMou: ${Category.fromMap(maps[i]).description}");
       categoryList.add(Category.fromMap(maps[i]));

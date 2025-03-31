@@ -8,6 +8,9 @@ class StartController extends GetxController{
   final userData = GetStorage();
   TextEditingController enterPinController = TextEditingController();
   TextEditingController confirmPinController = TextEditingController();
+  var isEnterPINVisible = false.obs;
+  var isConfirmPINVisible = false.obs;
+  var isYourPINVisible = false.obs;
   void confirmAndGoToHomePIN(){
     String enterPIN = enterPinController.text;
     String confirmPIN = confirmPinController.text;
@@ -23,6 +26,10 @@ class StartController extends GetxController{
       Get.offAndToNamed(Routes.HOME);
     }
   }
+
+
+
+
   bool isBeginning(){
     if(userData.read("PIN") == null){
       return true;

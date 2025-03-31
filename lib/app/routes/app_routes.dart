@@ -13,6 +13,10 @@ abstract class Routes {
   static const CATEGORY = _Paths.CATEGORY;
   static const ADD_CATEGORY = _Paths.ADD_CATEGORY;
   static const ADD_CUSTOMER = _Paths.ADD_CUSTOMER;
+  static const ADD_TRANSACTION = _Paths.ADD_TRANSACTION;
+  static const LOGIN = _Paths.LOGIN;
+  static const SPLASH = _Paths.SPLASH;
+  static const ADD_UNIT = _Paths.ADD_UNIT;
 }
 
 abstract class _Paths {
@@ -25,4 +29,8 @@ abstract class _Paths {
   static const CATEGORY = '/category';
   static const ADD_CATEGORY = '/add-category';
   static const ADD_CUSTOMER = '/add-customer';
+  static const ADD_TRANSACTION = '/add-transaction';
+  static const LOGIN = '/login';
+  static const SPLASH = '/splash';
+  static const ADD_UNIT = '/add-unit';
 }

@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../data/models/category.dart';
-import '../../../data/models/product.dart';
+import '../../../../data/models/category.dart';
+import '../../../../data/models/product.dart';
 import '../../product/controllers/product_controller.dart';
 
 class AddProductController extends GetxController {
@@ -42,23 +42,21 @@ class AddProductController extends GetxController {
   void add(){
     filePath ??= "";
     Map<dynamic, dynamic> json = HashMap();
-    json['id'] = -1;
     json['title'] = titleController.text;
-    json['productCategory'] = categoryController.value.text;
     json['description'] = descriptionController.text;
     json['wprice'] = double.parse(wholeSalePriceController.text);
     json['rprice'] = double.parse(retailPriceController.text);
     json['discount'] = double.parse(discountController.text);
     json['tax'] = double.parse(taxController.text);
     json['quantity'] = double.parse(quantityController.text);
-    json['quantityUnit'] = int.parse(quantityUnitController.text);
-    json['photoUrl'] = filePath;
+    json['quantityUnit'] = quantityUnitController.text;
+    json['photo'] = filePath;
     Category? category;
     if(categoryController.value.text == "None") {
-      category = Category(id: -1,
+      category = Category(
           title: "None",
           description: "",
-          photoUrl: "");
+          photo: "");
     }
     pageController.addProduct(Product.fromMap(json), category!);
     pageController.getAllProduct();

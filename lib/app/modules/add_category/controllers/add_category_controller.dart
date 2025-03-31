@@ -1,13 +1,12 @@
 import 'dart:collection';
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../data/models/category.dart';
-import '../../../data/repository/categoryRepo.dart';
+import '../../../../data/models/category.dart';
+import '../../../../data/repository/categoryRepo.dart';
 import '../../category/controllers/category_controller.dart';
 
 class AddCategoryController extends GetxController {
@@ -32,14 +31,12 @@ class AddCategoryController extends GetxController {
   }
 
   Future<void> addCategory() async {
-    Map<dynamic, dynamic> json = HashMap();
-    filePath ??= "";
+    Map<String, dynamic> json = HashMap();
     if(titleController.text.trim() != ""){
       json['categoryTitle'] = titleController.text;
       json['categoryDescription'] = descController.text;
-      json['categoryPhotoUrl'] = filePath;
+    //  json['categoryPhoto'] = base64File;
       await categoryRepo.add(Category.fromMap(json));
-      //await categoryController.onInit();
       categoryController.items.add(Category.fromMap(json));
       Get.back();
     }

@@ -1,26 +1,26 @@
 class Product{
   int? id;
   String? title;
-  String? category;
+  int? categoryId;
   String? description;
   double? wholeSalePrice;
   double? retailPrice;
   double? discount;
   double? tax;
   double? quantity;
-  int? quantityUnit;
-  String? photoUrl;
+  String? quantityUnit;
+  String? photo;
 
-  Product({this.id, this.title, this.category, this.description,
+  Product({this.id, this.title, this.categoryId, this.description,
   this.wholeSalePrice, this.retailPrice, this.discount,
-  this.tax, this.quantity, this.quantityUnit, this.photoUrl});
+  this.tax, this.quantity, this.quantityUnit, this.photo});
 
 
   factory Product.fromMap(Map<dynamic, dynamic> json) {
     return Product(
         id: json['productId'],
         title: json['title'],
-        category: json['productCategory'],
+        categoryId: json['categoryId'],
         description: json['description'],
         wholeSalePrice: json['wprice'],
         retailPrice: json['rprice'],
@@ -28,7 +28,7 @@ class Product{
         tax: json['tax'],
         quantity: json['quantity'],
         quantityUnit: json['quantityUnit'],
-        photoUrl: json['photoUrl'],
+        photo: json['photo'],
     );
   }
 
@@ -36,7 +36,7 @@ class Product{
     return {
       'productId': id,
       'title': title,
-      'productCategory': category,
+      'categoryId': categoryId,
       'description': description,
       'wprice': wholeSalePrice,
       'rprice': retailPrice,
@@ -44,7 +44,7 @@ class Product{
       'tax': tax,
       'quantity': quantity,
       'quantityUnit': quantityUnit,
-      'photoUrl': photoUrl
+      'photo': photo
     };
   }
 

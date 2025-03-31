@@ -1,9 +1,9 @@
-import 'package:daily_sales_record/app/data/models/customer.dart';
-import 'package:get/get.dart';
 
-import '../../../data/models/category.dart';
-import '../../../data/repository/customerRepo.dart';
-import '../../../data/utilities/enums.dart';
+import 'package:get/get.dart';
+import '../../../../common/enums.dart';
+import '../../../../data/models/category.dart';
+import '../../../../data/models/customer.dart';
+import '../../../../data/repository/customerRepo.dart';
 
 class CustomerController extends GetxController {
   var selectedType = CustomerType.customer.obs;
@@ -13,7 +13,7 @@ class CustomerController extends GetxController {
   }
 
 
-  var allProducts = <Customer>[].obs;
+  var allCustomers = <Customer>[].obs;
   CustomerRepo customerRepo = CustomerRepo();
 
   @override
@@ -40,7 +40,7 @@ class CustomerController extends GetxController {
 
   getAllCustomers() async{
     var products = await customerRepo.getAllCustomer();
-    allProducts.value = products;
+    allCustomers.value = products;
   }
 
 }

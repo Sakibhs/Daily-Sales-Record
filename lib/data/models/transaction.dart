@@ -5,7 +5,12 @@ class Transaction {
   String? customerIdFR;
   String? productIdFR;
 
-  Transaction({this.transactionId, this.transactionName, this.transactionPaid, this.customerIdFR, this.productIdFR});
+  double? transactionDue;
+  double? transactionQuantity;
+  double? transactionPrice;
+  Transaction({this.transactionId, this.transactionName, this.transactionPaid,
+    this.customerIdFR, this.productIdFR, this.transactionDue, this.transactionQuantity,
+     this.transactionPrice});
 
   factory Transaction.fromMap(Map<dynamic, dynamic> json){
     return Transaction(
@@ -14,6 +19,9 @@ class Transaction {
         transactionPaid : json['transactionPaid'],
         customerIdFR : json['customerIdFR'],
         productIdFR: json['productIdFR'],
+        transactionDue: json['transactionDue'],
+      transactionQuantity: json['transactionQuantity'],
+      transactionPrice: json['transactionPrice'],
     );
       }
   Map<String, dynamic> toMap(){
@@ -23,6 +31,9 @@ class Transaction {
       'transactionPaid' : transactionPaid,
       'customerIdFR' : customerIdFR,
       'productIdFR': productIdFR,
+      'transactionDue': transactionDue,
+      'transactionQuantity': transactionQuantity,
+      'transactionPrice': transactionPrice,
    };
   }
 
