@@ -8,11 +8,11 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.6
   get: 4.6.6
-  get_storage:
-  fluttertoast:
-  sqflite:
-  image_picker:
-  permission_handler:
+  get_storage: any
+  fluttertoast: any
+  sqflite: any
+  image_picker: any
+  permission_handler: any
   google_fonts: ^5.1.0
   firebase_auth: ^4.16.0
   google_sign_in: ^6.2.1
